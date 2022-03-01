@@ -18,13 +18,20 @@ export default function App(){
             <Navbar/>
         }   
         <Routes>
-            <Route path="/" element={<Navigate to="/products" />} />
-            <Route path="/products" element={<Produtos />} />
-            <Route path="/product" element={<Produto />}>
-                <Route path=":id" element={<Produto />} />
-            </Route>
-            <Route path="/categories" element={<Categorias />} />
-            <Route path="/login" element={<Login />} />
+            {user.token?
+                <>
+                    <Route path="/" element={<Navigate to="/products" />} />
+                    <Route path="/products" element={<Produtos />} />
+                    <Route path="/product" element={<Produto />}>
+                        <Route path=":id" element={<Produto />} />
+                    </Route>
+                    <Route path="/categories" element={<Categorias />} />
+                    <Route path="/login" element={<Login />} />
+                </>
+            :<>
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<Navigate to="/login" />} />
+            </>}
         </Routes>
     </>);
 }
