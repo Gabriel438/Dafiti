@@ -13,7 +13,7 @@ Deixamos duas opções para auxiliar na executação da aplicação
 
 Para facilicade dos testes a aplicação está rodando em tempo real atráves da hospedagem Heroku, que é uma plataforma que nos permite realizar o deploy de aplicações sem custo algum, para acessar basta realizar os request no link
 
-[https://dafiti-challenge.herokuapp.com](https://dafiti-challenge.herokuapp.com)
+[https://challenge-dafiti.herokuapp.com](https://challenge-dafiti.herokuapp.com)
 
 #### Instalação
 
