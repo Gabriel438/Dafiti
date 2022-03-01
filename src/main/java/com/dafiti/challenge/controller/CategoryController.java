@@ -12,6 +12,7 @@ import com.dafiti.challenge.model.Category;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin(origins = "*")
 public class CategoryController {
     
     @Autowired
@@ -41,12 +43,14 @@ public class CategoryController {
 
     @PostMapping(value={"/",""})
     @CacheEvict(value="listCategory", allEntries = true)
+    @CrossOrigin(origins = "*")
     public Category setCategory(@RequestBody @Valid Category category){
         return (categoryRepository.save(category));
     }
     
     @PutMapping("/{id}")
     @CacheEvict(value="listCategory", allEntries = true)
+    @CrossOrigin(origins = "*")
     public Category updateCategory(@PathVariable(value="id",required = true) Long id, @RequestBody @Valid Category category){
 
         Category category_new = categoryRepository.findById(id).orElseThrow(EntityNotFoundException::new);
@@ -58,6 +62,7 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     @CacheEvict(value="listCategory", allEntries = true)
+    @CrossOrigin(origins = "*")
     public Category deleteCategory(@PathVariable(value="id",required = true) Long id){
         Category category = categoryRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         categoryRepository.deleteById(id);

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = "*")
 public class ProductController {
 
     @Autowired
@@ -40,11 +42,13 @@ public class ProductController {
     }
     
     @PostMapping(value={"/",""})
+    @CrossOrigin(origins = "*")
     public Product setProduct(@RequestBody @Valid Product product){
         return productRepository.save(product);
     }
 
     @PutMapping("/{id}")
+    @CrossOrigin(origins = "*")
     public Product updateProduct(@PathVariable(value="id",required = true) Long id,@RequestBody @Valid Product product){
 
         Product product_new = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
@@ -58,6 +62,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
+    @CrossOrigin(origins = "*")
     public Product updateProduct(@PathVariable(value="id",required = true) Long id){
         Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         productRepository.deleteById(id);
